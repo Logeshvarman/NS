@@ -1,19 +1,14 @@
-def encrypt_text(plaintext,n):
-    ans = ""
-    for i in range(len(plaintext)):
-        ch = plaintext[i]
-        
-        if ch==" ":
-            ans+=" "
-        elif (ch.isupper()):
-            ans += chr((ord(ch) + n-65) % 26 + 65)
-        
+def caesar_cipher(plaintext, shift):
+    ciphertext = ""
+    for char in plaintext:
+        if char.isalpha():
+            shift_char = chr((ord(char) - 65 + shift) % 26 + 65)
+            ciphertext += shift_char
         else:
-            ans += chr((ord(ch) + n-97) % 26 + 97)
-    
-    return ans
-
-plaintext = "caesar"
-n = 10
-print("Plain Text is : " + plaintext)
-print("Cipher Text is : " + encrypt_text(plaintext,n))
+            ciphertext += char
+    return ciphertext
+                
+plaintext = "CAESAR"
+shift = 10
+ciphertext = caesar_cipher(plaintext, shift)
+print("Ciphertext: ", ciphertext)
